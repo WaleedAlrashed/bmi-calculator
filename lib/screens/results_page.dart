@@ -1,9 +1,9 @@
 import 'package:bmi_calculator/components/ButtomButton.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+// import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:easy_alert/easy_alert.dart';
 import '../components/ReusableCard.dart';
 
 class ResultsPage extends StatelessWidget {
@@ -12,7 +12,7 @@ class ResultsPage extends StatelessWidget {
   final String interpretation;
 
   launchURL() async {
-    const url = 'https://waleedalrashed.wordpress.com/';
+    const url = 'https://waleedalrashed.com/';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -68,39 +68,51 @@ class ResultsPage extends StatelessWidget {
                           style: kBodyTextStyle,
                         ),
                         onPressed: () {
-                          Alert(
-                            context: context,
-                            type: AlertType.info,
-                            title: "BMI Calculator",
-                            desc: "Created with ❤ in Damascus, Syria",
-                            buttons: [
-                              DialogButton(
-                                child: Text(
-                                  "Cool",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                                onPressed: () => Navigator.pop(context),
-                                color: Color.fromRGBO(0, 179, 134, 1.0),
-                              ),
-                              DialogButton(
-                                child: Text(
-                                  "Website",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                                onPressed: () async {
-                                  launchURL();
-                                },
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color.fromRGBO(116, 116, 191, 1.0),
-                                    Color.fromRGBO(52, 138, 199, 1.0)
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ).show();
+                          // launchURL();
+                          Alert.confirm(context,
+                                  title: "BMI Calculator",
+                                  content:
+                                      "Created with ❤ in Damascus, Syria - Waleed Alrashed")
+                              .then((int ret) {
+                            Alert.toast(
+                                context, ret == Alert.OK ? "ok" : "cancel");
+                            launchURL();
+                          });
+                          // Alert(
+                          //   context: context,
+                          //   type: AlertType.info,
+                          //   title: "BMI Calculator",
+                          //   desc:
+                          //       "Created with ❤ in Damascus, Syria - Waleed Alrashed",
+                          //   buttons: [
+                          //     DialogButton(
+                          //       child: Text(
+                          //         "Cool",
+                          //         style: TextStyle(
+                          //             color: Colors.white, fontSize: 20),
+                          //       ),
+                          //       onPressed: () => Navigator.pop(context),
+                          //       color: Color.fromRGBO(0, 179, 134, 1.0),
+                          //     ),
+                          //     DialogButton(
+                          //       child: Text(
+                          //         "Website",
+                          //         style: TextStyle(
+                          //             color: Colors.white, fontSize: 20),
+                          //       ),
+                          //       onPressed: () async {
+                          //         launchURL();
+                          //         Navigator.pop(context);
+                          //       },
+                          //       gradient: LinearGradient(
+                          //         colors: [
+                          //           Color.fromRGBO(116, 116, 191, 1.0),
+                          //           Color.fromRGBO(52, 138, 199, 1.0)
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ).show();
                         })
                   ],
                 ),

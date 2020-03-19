@@ -1,8 +1,17 @@
+import 'package:easy_alert/easy_alert.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/input_page.dart';
 
-void main() => runApp(BMICalculator());
+void main() => runApp(
+      AlertProvider(
+        child: BMICalculator(),
+        config: AlertConfig(
+          ok: "Ok",
+          cancel: "Thanks anyway",
+        ),
+      ),
+    );
 
 class BMICalculator extends StatelessWidget {
   @override

@@ -1,0 +1,15 @@
+{
+    "hosting": {
+        "public": "build/web",
+        "site": "bmi-70cad",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [{
+            "source": "**",
+            "destination": "/index.html"
+        }]
+    }
+}
